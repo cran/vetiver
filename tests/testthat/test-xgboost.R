@@ -2,6 +2,7 @@ library(pins)
 library(plumber)
 skip_if_not_installed("xgboost")
 
+set.seed(123)
 cars_xgb <- xgboost::xgboost(as.matrix(mtcars[,-1]),
                             mtcars$mpg, nrounds = 3,
                             objective = "reg:squarederror")
@@ -10,6 +11,13 @@ v <- vetiver_model(cars_xgb, "cars2")
 test_that("can print xgboost model", {
     expect_snapshot(v)
 })
+
+test_that("can predict xgboost model", {
+    preds <- predict(v, as.matrix(mtcars[,-1]))
+    expect_equal(length(preds), 32)
+    expect_equal(mean(preds), 12.7, tolerance = 0.1)
+})
+
 
 test_that("can pin an xgboost model", {
     b <- board_temp()
@@ -29,9 +37,9 @@ test_that("can pin an xgboost model", {
 
 test_that("default endpoint for xgboost", {
     p <- pr() %>% vetiver_pr_predict(v)
-    ep <- p$endpoints[[1]][[1]]
-    expect_equal(ep$verbs, c("POST"))
-    expect_equal(ep$path, "/predict")
+    expect_equal(names(p$routes), c("ping", "predict"))
+    expect_equal(map_chr(p$routes, "verbs"),
+                 c(ping = "GET", predict = "POST"))
 })
 
 test_that("default OpenAPI spec", {
