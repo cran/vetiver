@@ -29,7 +29,10 @@ You can use vetiver with:
 -   [caret](https://topepo.github.io/caret/)
 -   [mlr3](https://mlr3.mlr-org.com/)
 -   [XGBoost](https://xgboost.readthedocs.io/en/latest/R-package/)
+-   [ranger](https://cran.r-project.org/package=ranger)
 -   [`lm()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/lm.html)
+    and
+    [`glm()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/glm.html)
 
 ## Installation
 
@@ -89,7 +92,7 @@ ways](https://www.rplumber.io/articles/hosting.html).
 ``` r
 library(plumber)
 pr() %>%
-  vetiver_pr_predict(v) %>%
+  vetiver_api(v) %>%
   pr_run(port = 8088)
 ```
 

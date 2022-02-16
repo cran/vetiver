@@ -1,3 +1,11 @@
+# vetiver 0.1.2
+
+* Generate Dockerfiles to deploy model (#71).
+
+* Added support for glm (#75) and ranger (#76).
+
+* Deprecated `vetiver_pr_predict()` in favor of using `vetiver_api()` (#77).
+
 # vetiver 0.1.1
 
 * Added support for tidymodels (#51), caret (#52), and mlr3 (#56).

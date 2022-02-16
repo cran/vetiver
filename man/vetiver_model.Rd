@@ -24,7 +24,8 @@ new_vetiver_model(model, model_name, description, metadata, ptype, versioned)
 \item{model_name}{Model name or ID.}
 
 \item{...}{Other method-specific arguments passed to \code{\link[=vetiver_ptype]{vetiver_ptype()}}
-to compute an input data prototype.}
+to compute an input data prototype, such as \code{ptype_data} (a sample of
+training features).}
 
 \item{description}{A detailed description of the model. If omitted, a brief
 description of the model will be generated.}
@@ -35,9 +36,9 @@ avoid potential clashes with the metadata that pins itself uses.}
 
 \item{save_ptype}{Should an input data prototype be stored with the model?
 The options are \code{TRUE} (the default, which stores a zero-row slice of the
-training data), \code{FALSE} (no input data prototype for checking), or a
-dataframe to be used for both checking at prediction time \emph{and} examples in
-API visual documentation.}
+training data), \code{FALSE} (no input data prototype for visual documentation or
+checking), or a dataframe to be used for both checking at prediction time
+\emph{and} examples in API visual documentation.}
 
 \item{versioned}{Should the model object be versioned when stored with
 \code{\link[=vetiver_pin_write]{vetiver_pin_write()}}? The default, \code{NULL}, will use the default for the
@@ -55,12 +56,12 @@ and deploy a trained model. Once your \code{vetiver_model()} object has been
 created, you can:
 \itemize{
 \item store and version it as a pin with \code{\link[=vetiver_pin_write]{vetiver_pin_write()}}
-\item create an API endpoint for it with \code{\link[=vetiver_pr_predict]{vetiver_pr_predict()}}
+\item create an API endpoint for it with \code{\link[=vetiver_api]{vetiver_api()}}
 }
 }
 \details{
 You can provide your own data to \code{save_ptype} to use as examples in the
-visual documentation created by \code{\link[=vetiver_pr_predict]{vetiver_pr_predict()}}. If you do this,
+visual documentation created by \code{\link[=vetiver_api]{vetiver_api()}}. If you do this,
 consider checking that your input data prototype has the same structure
 as your training data (perhaps with \code{\link[hardhat:scream]{hardhat::scream()}}) and/or simulating
 data to avoid leaking PII via your deployed model.

@@ -4,7 +4,7 @@
 #' and deploy a trained model. Once your `vetiver_model()` object has been
 #' created, you can:
 #' - store and version it as a pin with [vetiver_pin_write()]
-#' - create an API endpoint for it with [vetiver_pr_predict()]
+#' - create an API endpoint for it with [vetiver_api()]
 #'
 #'
 #' @param model A trained model, such as an `lm()` model or a tidymodels
@@ -14,21 +14,22 @@
 #' description of the model will be generated.
 #' @param save_ptype Should an input data prototype be stored with the model?
 #' The options are `TRUE` (the default, which stores a zero-row slice of the
-#' training data), `FALSE` (no input data prototype for checking), or a
-#' dataframe to be used for both checking at prediction time *and* examples in
-#' API visual documentation.
+#' training data), `FALSE` (no input data prototype for visual documentation or
+#' checking), or a dataframe to be used for both checking at prediction time
+#' *and* examples in API visual documentation.
 #' @param ptype An input data prototype. If `NULL`, there is no checking of
 #' new data at prediction time.
 #' @param versioned Should the model object be versioned when stored with
 #' [vetiver_pin_write()]? The default, `NULL`, will use the default for the
 #' `board` where you store the model.
 #' @param ... Other method-specific arguments passed to [vetiver_ptype()]
-#' to compute an input data prototype.
+#' to compute an input data prototype, such as `ptype_data` (a sample of
+#' training features).
 #' @inheritParams pins::pin_write
 #'
 #' @details
 #' You can provide your own data to `save_ptype` to use as examples in the
-#' visual documentation created by [vetiver_pr_predict()]. If you do this,
+#' visual documentation created by [vetiver_api()]. If you do this,
 #' consider checking that your input data prototype has the same structure
 #' as your training data (perhaps with [hardhat::scream()]) and/or simulating
 #' data to avoid leaking PII via your deployed model.

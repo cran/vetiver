@@ -49,7 +49,7 @@ model_board %>% pin_versions("biv_svm")
 ## -----------------------------------------------------------------------------
 library(plumber)
 pr() %>%
-  vetiver_pr_predict(v)
+  vetiver_api(v)
 
 ## ----eval=FALSE---------------------------------------------------------------
 #  vetiver_write_plumber(model_board, "biv_svm")
