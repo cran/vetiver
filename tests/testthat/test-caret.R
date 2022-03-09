@@ -1,6 +1,7 @@
 library(pins)
 library(plumber)
 skip_if_not_installed("caret")
+skip_if_not_installed("ranger")
 library(caret)
 
 predictors <- mtcars[, c("cyl", "disp", "hp")]
@@ -60,10 +61,13 @@ test_that("default OpenAPI spec", {
 
 test_that("create plumber.R for xgboost", {
     skip_on_cran()
-    b <- board_folder(path = "/tmp/test")
+    b <- board_folder(path = tmp_dir)
     vetiver_pin_write(b, v)
     tmp <- tempfile()
     vetiver_write_plumber(b, "cars_rf", file = tmp)
-    expect_snapshot(cat(readr::read_lines(tmp), sep = "\n"))
+    expect_snapshot(
+        cat(readr::read_lines(tmp), sep = "\n"),
+        transform = redact_vetiver
+    )
 })
 
