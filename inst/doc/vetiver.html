@@ -437,8 +437,8 @@ write it once more to our board.</p>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   version                created             hash </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                  &lt;dttm&gt;              &lt;chr&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 20220309T215950Z-ad0e1 2022-03-09 14:59:00 ad0e1</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20220309T215951Z-84d92 2022-03-09 14:59:00 84d92</span></span></code></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 20220428T145358Z-1a22a 2022-04-28 08:53:00 1a22a</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20220428T145358Z-aa4ef 2022-04-28 08:53:00 aa4ef</span></span></code></pre></div>
 <p>The primary purpose of pins is to make it easy to share data
 artifacts, so depending on the board you choose, your pinned
 <code>vetiver_model()</code> can be shareable with your
@@ -451,14 +451,16 @@ endpoint for making predictions.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plumber)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pr</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vetiver_api</span>(v)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Plumber router with 2 endpoints, 4 filters, and 0 sub-routers.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Plumber router with 2 endpoints, 4 filters, and 1 sub-router.</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Use `pr_run()` on this object to start the API.</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[queryString]</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[body]</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[cookieParser]</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[sharedSecret]</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/ping (GET)</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └──/predict (POST)</span></span></code></pre></div>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/logo</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpB8DpkI/Rinst1c2a2bd62ee7/vetiver</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/ping (GET)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └──/predict (POST)</span></span></code></pre></div>
 <p>To start a server using this object, pipe (<code>%&gt;%</code>) to
 <code>pr_run(port = 8088)</code> or your port of choice. This allows you
 to interact with your vetiver API locally and debug it. Plumber APIs
@@ -482,8 +484,8 @@ if (FALSE) {
     library(recipes)
     library(workflows)
 }
-b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/Rtmp0Uf4vx/pins-15c79d1a4afc&quot;)
-v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20220309T215950Z-ad0e1&quot;)
+b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpptMiIe/pins-1c566abc59fd&quot;)
+v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20220428T145358Z-1a22a&quot;)
 
 #* @plumber
 function(pr) {

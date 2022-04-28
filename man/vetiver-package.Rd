@@ -6,14 +6,16 @@
 \alias{vetiver-package}
 \title{vetiver: Version, Share, Deploy, and Monitor Models}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 The goal of 'vetiver' is to provide fluent tooling to version, share, deploy, and monitor a trained model. Functions handle both recording and checking the model's input data prototype, and predicting from a remote API endpoint. The 'vetiver' package is extensible, with generics that can support many kinds of models.
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://vetiver.tidymodels.org/}
-  \item \url{https://github.com/tidymodels/vetiver}
-  \item Report bugs at \url{https://github.com/tidymodels/vetiver/issues}
+  \item \url{https://github.com/tidymodels/vetiver-r}
+  \item Report bugs at \url{https://github.com/tidymodels/vetiver-r/issues}
 }
 
 }
