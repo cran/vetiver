@@ -1,7 +1,8 @@
 ## ---- include = FALSE---------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  eval = requireNamespace("parsnip", quietly = TRUE) && requireNamespace("recipes", quietly = TRUE) && requireNamespace("workflows", quietly = TRUE)
 )
 
 ## -----------------------------------------------------------------------------

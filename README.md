@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# vetiver <a href='https://vetiver.tidymodels.org'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# vetiver <a href='https://rstudio.github.io/vetiver-r/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tidymodels/vetiver-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tidymodels/vetiver-r/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/rstudio/vetiver-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/rstudio/vetiver-r/actions/workflows/R-CMD-check.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/vetiver)](https://CRAN.R-project.org/package=vetiver)
 [![Codecov test
-coverage](https://codecov.io/gh/tidymodels/vetiver-r/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tidymodels/vetiver-r?branch=main)
+coverage](https://codecov.io/gh/rstudio/vetiver-r/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/vetiver-r?branch=main)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
@@ -21,7 +21,9 @@ The goal of vetiver is to provide fluent tooling to version, share,
 deploy, and monitor a trained model. Functions handle both recording and
 checking the model’s input data prototype, and predicting from a remote
 API endpoint. The vetiver package is extensible, with generics that can
-support many kinds of models.
+support many kinds of models, and available for both R and Python. To
+learn more about vetiver, see the documentation at
+<https://vetiver.rstudio.com/>
 
 You can use vetiver with:
 
@@ -47,7 +49,7 @@ And the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("tidymodels/vetiver-r")
+devtools::install_github("rstudio/vetiver-r")
 ```
 
 ## Example
@@ -157,7 +159,7 @@ By contributing to this project, you agree to abide by its terms.
     Community](https://community.rstudio.com/new-topic?category_id=15&tags=tidymodels,question).
 
 -   If you think you have encountered a bug, please [submit an
-    issue](https://github.com/tidymodels/vetiver-r/issues).
+    issue](https://github.com/rstudio/vetiver-r/issues).
 
 -   Either way, learn how to create and share a
     [reprex](https://reprex.tidyverse.org/articles/articles/learn-reprex.html)
