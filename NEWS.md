@@ -1,3 +1,19 @@
+# vetiver 0.1.6
+
+* The lockfile created by `vetiver_write_docker()` can now be named via the argument `lockfile`, and its default is `vetiver_renv.lock` (#100).
+
+* Switched the default for `overwrite` in `vetiver_pin_metrics()` from `TRUE` to `FALSE`. Using `FALSE` is a better choice for interactive use while `TRUE` is probably the right choice for reports or dashboards that are executed on a schedule (#104).
+
+* Added an optional `EXPOSE PORT` line to the generated Dockerfile, to help out Docker Desktop users (#105).
+
+* Added model monitoring dashboard template (#98). To knit the example vetiver monitoring dashboard, execute `vetiver::pin_example_kc_housing_model()` to set up demo model and metrics pins.
+
+* The OpenAPI spec generated for a vetiver model now includes the model _version_ when applicable.
+
+* Added option to write a Plumber file without packages listed for RStudio Connect purposes (#112).
+
+* Added new function `vetiver_create_rsconnect_bundle()` as an alternative deployment strategy (#113).
+
 # vetiver 0.1.5
 
 * Add functions for model monitoring (#92).

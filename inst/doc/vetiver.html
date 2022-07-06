@@ -437,8 +437,8 @@ write it once more to our board.</p>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   version                created             hash </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                  &lt;dttm&gt;              &lt;chr&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 20220525T193745Z-95463 2022-05-25 13:37:00 95463</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20220525T193745Z-c6fd9 2022-05-25 13:37:00 c6fd9</span></span></code></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 20220706T003139Z-95bd2 2022-07-05 18:31:00 95bd2</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20220706T003139Z-d52dd 2022-07-05 18:31:00 d52dd</span></span></code></pre></div>
 <p>The primary purpose of pins is to make it easy to share data
 artifacts, so depending on the board you choose, your pinned
 <code>vetiver_model()</code> can be shareable with your
@@ -458,7 +458,7 @@ endpoint for making predictions.</p>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[cookieParser]</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[sharedSecret]</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/logo</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpbVZsnM/Rinst16d484ddc766d/vetiver</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/Rtmp0lUYUp/Rinstc91562bf6f7f/vetiver</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/ping (GET)</span></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └──/predict (POST)</span></span></code></pre></div>
 <p>To start a server using this object, pipe (<code>%&gt;%</code>) to
@@ -484,8 +484,8 @@ if (FALSE) {
     library(recipes)
     library(workflows)
 }
-b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpTJ5ac9/pins-16d753905862&quot;)
-v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20220525T193745Z-95463&quot;)
+b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpUnobQk/pins-c94131b0befc&quot;)
+v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20220706T003139Z-95bd2&quot;)
 
 #* @plumber
 function(pr) {
