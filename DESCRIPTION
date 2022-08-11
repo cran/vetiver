@@ -1,6 +1,6 @@
 Package: vetiver
 Title: Version, Share, Deploy, and Monitor Models
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: c(
     person("Julia", "Silge", , "julia.silge@rstudio.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-3671-836X")),
@@ -31,9 +31,9 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 RoxygenNote: 7.2.0
 NeedsCompilation: no
-Packaged: 2022-07-06 00:31:40 UTC; juliasilge
+Packaged: 2022-08-11 17:34:17 UTC; juliasilge
 Author: Julia Silge [cre, aut] (<https://orcid.org/0000-0002-3671-836X>),
   RStudio [cph, fnd]
 Maintainer: Julia Silge <julia.silge@rstudio.com>
 Repository: CRAN
-Date/Publication: 2022-07-06 06:20:02 UTC
+Date/Publication: 2022-08-11 17:50:02 UTC
