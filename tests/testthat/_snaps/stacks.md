@@ -1,13 +1,13 @@
-# can print xgboost model
+# can print stacks model
 
     Code
       v
     Output
       
-      -- cars2 - <bundled_xgb.Booster> model for deployment 
-      An xgboost reg:squarederror model using 10 features
+      -- frog-stack - <bundled_model_stack> model for deployment 
+      A regression stacked ensemble with 3 members using 4 features
 
-# create plumber.R for xgboost
+# create plumber.R for stacks
 
     Code
       cat(readr::read_lines(tmp), sep = "\n")
@@ -21,10 +21,15 @@
       
       # Packages needed to generate model predictions
       if (FALSE) {
-          library(xgboost)
+          library(glmnet)
+          library(parsnip)
+          library(recipes)
+          library(stacks)
+          library(stats)
+          library(workflows)
       }
       b <- board_folder(path = "<redacted>")
-      v <- vetiver_pin_read(b, "cars2")
+      v <- vetiver_pin_read(b, "frog-stack")
       
       #* @plumber
       function(pr) {

@@ -6,6 +6,7 @@
 #'
 #' @return A tibble of model predictions with as many rows as in `new_data`.
 #' @importFrom stats predict
+#' @seealso [augment.vetiver_endpoint()]
 #' @export
 #'
 #' @examples
@@ -17,6 +18,7 @@
 #'
 #'
 predict.vetiver_endpoint <- function(object, new_data, ...) {
+    rlang::check_installed(c("jsonlite", "httr"))
     data_json <- jsonlite::toJSON(new_data)
     ret <- httr::POST(object$url, ..., body = data_json)
     resp <- httr::content(ret, "text", encoding = "UTF-8")
@@ -34,6 +36,27 @@ predict.vetiver_endpoint <- function(object, new_data, ...) {
     tibble::as_tibble(resp)
 }
 
+#' Post new data to a deployed model API endpoint and augment with predictions
+#'
+#' @param x A model API endpoint object created with [vetiver_endpoint()].
+#' @inheritParams predict.vetiver_endpoint
+#'
+#' @return The `new_data` with added prediction column(s).
+#' @seealso [predict.vetiver_endpoint()]
+#' @export
+#'
+#' @examples
+#'
+#' if (FALSE) {
+#' endpoint <- vetiver_endpoint("http://127.0.0.1:8088/predict")
+#' augment(endpoint, mtcars[4:7, -1])
+#' }
+#'
+augment.vetiver_endpoint <- function(x, new_data, ...) {
+    preds <- predict(x, new_data = new_data, ...)
+    vctrs::vec_cbind(tibble::as_tibble(new_data), preds)
+}
+
 
 #' Create a model API endpoint object for prediction
 #'
@@ -45,11 +68,12 @@ predict.vetiver_endpoint <- function(object, new_data, ...) {
 #' @return A new `vetiver_endpoint` object
 #'
 #' @examples
-#' vetiver_endpoint("https://colorado.rstudio.com/rsc/biv_svm_api/predict")
+#' vetiver_endpoint("https://colorado.rstudio.com/rsc/seattle-housing/predict")
 #'
 #' @export
 vetiver_endpoint <- function(url) {
     url <- as.character(url)
+    url <- gsub("/$", "", url)
     new_vetiver_endpoint(url)
 }
 
