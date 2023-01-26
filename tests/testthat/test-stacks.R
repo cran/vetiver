@@ -1,6 +1,8 @@
-skip_if_not_installed("stacks")
 skip_on_cran()
+skip_if_not_installed("stacks")
+skip_if_not_installed("plumber")
 
+library(plumber)
 library(stacks)
 
 data("tree_frogs", package = "stacks")
@@ -34,7 +36,7 @@ test_that("can pin a stacks model", {
         pinned,
         list(
             model = bundle::bundle(butcher::butcher(frog_reg)),
-            ptype = vctrs::vec_ptype(tree_test),
+            prototype = vctrs::vec_ptype(tree_test),
             required_pkgs = c("glmnet", "parsnip", "recipes", "stacks", "stats", "workflows")
         )
     )

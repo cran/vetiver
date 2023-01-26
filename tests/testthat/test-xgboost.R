@@ -1,5 +1,7 @@
 skip_if_not_installed("xgboost")
+skip_if_not_installed("plumber")
 
+library(plumber)
 set.seed(123)
 cars_xgb <- xgboost::xgboost(as.matrix(mtcars[,-1]),
                              mtcars$mpg, nrounds = 3,
@@ -25,7 +27,7 @@ test_that("can pin an xgboost model", {
         pinned,
         list(
             model = bundle::bundle(cars_xgb),
-            ptype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0),
+            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0),
             required_pkgs = c("xgboost")
         )
     )

@@ -1,3 +1,6 @@
+skip_if_not_installed("plumber")
+library(plumber)
+
 mtcars_glm <- glm(mpg ~ ., data = mtcars)
 v <- vetiver_model(mtcars_glm, "cars_glm")
 
@@ -19,7 +22,7 @@ test_that("can pin a glm model", {
         pinned,
         list(
             model = butcher::butcher(mtcars_glm),
-            ptype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0),
+            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0),
             required_pkgs = NULL
         ),
         ignore_function_env = TRUE,
@@ -51,7 +54,7 @@ test_that("default OpenAPI spec", {
 
 })
 
-test_that("create plumber.R for xgboost", {
+test_that("create plumber.R for glm", {
     skip_on_cran()
     b <- board_folder(path = tmp_dir)
     vetiver_pin_write(b, v)
@@ -60,6 +63,15 @@ test_that("create plumber.R for xgboost", {
     expect_snapshot(
         cat(readr::read_lines(tmp), sep = "\n"),
         transform = redact_vetiver
+    )
+})
+
+
+test_that("prototype for glm with interactions", {
+    cars_interaction <- glm(mpg ~ cyl * vs + disp, data = mtcars)
+    expect_equal(
+        vetiver_create_ptype(cars_interaction, TRUE),
+        vctrs::vec_slice(tibble::as_tibble(mtcars[, c(2, 8, 3)]), 0)
     )
 })
 

@@ -1,9 +1,10 @@
 # old function is deprecated
 
-    Code
-      p <- pr() %>% vetiver_pr_predict(v)
-    Condition
-      Warning:
-      `vetiver_pr_predict()` was deprecated in vetiver 0.1.2.
-      Please use `vetiver_api()` instead.
+    `vetiver_pr_predict()` was deprecated in vetiver 0.1.2 and is now defunct.
+    i Please use `vetiver_api()` instead.
+
+# OpenAPI spec for check_prototype = FALSE
+
+    The `check_ptype` argument of `vetiver_pr_post()` is deprecated as of vetiver 0.2.0.
+    i Please use the `check_prototype` argument instead.
 

@@ -1,7 +1,9 @@
 skip_if_not_installed("caret")
 skip_if_not_installed("ranger")
+skip_if_not_installed("plumber")
 
 library(caret)
+library(plumber)
 
 predictors <- mtcars[, c("cyl", "disp", "hp")]
 
@@ -29,7 +31,7 @@ test_that("can pin a caret model", {
         pin_read(b, "cars_rf"),
         list(
             model = bundle::bundle(butcher::butcher(rf_fit)),
-            ptype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:4]), 0),
+            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:4]), 0),
             required_pkgs = c("caret", "dplyr", "e1071", "ranger")
         )
     )

@@ -20,7 +20,8 @@ vetiver_pr_post(
   path = "/predict",
   debug = is_interactive(),
   ...,
-  check_ptype = TRUE
+  check_prototype = TRUE,
+  check_ptype = deprecated()
 )
 
 vetiver_pr_docs(pr, vetiver_model, path = "/predict", all_docs = TRUE)
@@ -36,13 +37,15 @@ vetiver_pr_docs(pr, vetiver_model, path = "/predict", all_docs = TRUE)
 
 \item{...}{Other arguments passed to \code{predict()}, such as prediction \code{type}}
 
-\item{check_ptype}{Should the \code{ptype} stored in \code{vetiver_model} (used for
-visual API documentation) also be used to check new data at prediction time?
-Defaults to \code{TRUE}.}
+\item{check_prototype}{Should the input data prototype stored in
+\code{vetiver_model} (used for visual API documentation) also be used to check
+new data at prediction time? Defaults to \code{TRUE}.}
+
+\item{check_ptype}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}}
 
 \item{all_docs}{Should the interactive visual API documentation be created
 for \emph{all} POST endpoints in the router \code{pr}? This defaults to \code{TRUE}, and
-assumes that all POST endpoints use the \code{vetiver_model$ptype} input data
+assumes that all POST endpoints use the \code{\link[=vetiver_model]{vetiver_model()}} input data
 prototype.}
 }
 \value{
@@ -72,6 +75,7 @@ The function \code{vetiver_api()} uses:
 These modular functions are available for more advanced use cases.
 }
 \examples{
+\dontshow{if (rlang::is_installed("plumber")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 cars_lm <- lm(mpg ~ ., data = mtcars)
 v <- vetiver_model(cars_lm, "cars_linear")
@@ -81,5 +85,5 @@ pr() \%>\% vetiver_api(v)
 ## is the same as:
 pr() \%>\% vetiver_pr_post(v) \%>\% vetiver_pr_docs(v)
 ## for either, next, pipe to `pr_run()`
-
+\dontshow{\}) # examplesIf}
 }

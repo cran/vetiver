@@ -1,5 +1,3 @@
-library(pins)
-
 b <- board_temp()
 cars_lm <- lm(mpg ~ cyl + disp, data = mtcars)
 
@@ -22,6 +20,14 @@ test_that("ptype = FALSE", {
     expect_equal(
         vetiver_create_ptype(cars_lm, FALSE),
         NULL
+    )
+})
+
+test_that("ptype for model with interactions", {
+    cars_interaction <- lm(mpg ~ cyl * vs + disp, data = mtcars)
+    expect_equal(
+        vetiver_create_ptype(cars_interaction, TRUE),
+        vctrs::vec_slice(tibble::as_tibble(mtcars[, c(2, 8, 3)]), 0)
     )
 })
 

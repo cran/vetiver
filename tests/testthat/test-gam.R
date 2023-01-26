@@ -1,5 +1,7 @@
 skip_if_not_installed("mgcv")
+skip_if_not_installed("plumber")
 
+library(plumber)
 mtcars_gam <- mgcv::gam(mpg ~ s(disp, k = 3) + s(wt), data = mtcars)
 v <- vetiver_model(mtcars_gam, "cars_gam")
 
@@ -21,7 +23,7 @@ test_that("can pin a gam model", {
         pinned,
         list(
             model = butcher::butcher(mtcars_gam),
-            ptype = vctrs::vec_ptype(tibble::as_tibble(mtcars[, c(3, 6)])),
+            prototype = vctrs::vec_ptype(tibble::as_tibble(mtcars[, c(3, 6)])),
             required_pkgs = "mgcv"
         ),
         ignore_function_env = TRUE,
@@ -53,7 +55,7 @@ test_that("default OpenAPI spec", {
 
 })
 
-test_that("create plumber.R for xgboost", {
+test_that("create plumber.R for gam", {
     skip_on_cran()
     b <- board_folder(path = tmp_dir)
     vetiver_pin_write(b, v)

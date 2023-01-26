@@ -10,7 +10,7 @@
 #' @param file A path to write the Plumber file. Defaults to `plumber.R` in the
 #' working directory. See [plumber::plumb()] for naming precedence rules.
 #' @param rsconnect Create a Plumber file with features needed for [RStudio
-#' Connect](https://www.rstudio.com/products/connect/)? Defaults to `TRUE`.
+#' Connect](https://posit.co/products/enterprise/connect/)? Defaults to `TRUE`.
 #'
 #' @details
 #' By default, this function will find and use the latest version of your
@@ -23,7 +23,7 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf rlang::is_installed("plumber")
 #' library(pins)
 #' tmp <- tempfile()
 #' b <- board_temp(versioned = TRUE)
@@ -38,6 +38,7 @@ vetiver_write_plumber <- function(board, name, version = NULL,
                                   file = "plumber.R",
                                   rsconnect = TRUE) {
 
+    rlang::check_installed("plumber")
     plumber_dots <- rlang::list2(...)
 
     if (board$versioned) {
