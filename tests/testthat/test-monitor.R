@@ -111,6 +111,7 @@ describe("vetiver_pin_metrics()", {
 
 describe("vetiver_plot_metrics()", {
 
+    ## for graphics API problems on R-devel:
     skip_if(getRversion() > 4.2)
 
     data(Chicago, package = "modeldata")

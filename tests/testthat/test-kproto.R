@@ -30,18 +30,19 @@ test_that("can pin a kproto model", {
         pinned,
         list(
             model = vetiver_prepare_model(kp_fit),
-            prototype = vctrs::vec_ptype(tibble::as_tibble(crickets)),
-            required_pkgs = c("clustMixType")
+            prototype = vctrs::vec_ptype(tibble::as_tibble(crickets))
         )
+    )
+    expect_equal(
+        pin_meta(b, "kproto-example")$user$required_pkgs,
+        "clustMixType"
     )
 })
 
 test_that("default endpoint for kproto", {
     p <- plumber::pr() %>% vetiver_api(v)
     p_routes <- p$routes[-1]
-    expect_equal(names(p_routes), c("ping", "predict"))
-    expect_equal(purrr::map_chr(p_routes, "verbs"),
-                 c(ping = "GET", predict = "POST"))
+    expect_api_routes(p_routes)
 })
 
 test_that("default OpenAPI spec", {

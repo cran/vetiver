@@ -35,12 +35,19 @@
 #' as your training data (perhaps with [hardhat::scream()]) and/or simulating
 #' data to avoid leaking PII via your deployed model.
 #'
+#' Some models, like [ranger::ranger()], [keras](https://tensorflow.rstudio.com/),
+#' and [luz (torch)](https://torch.mlverse.org/),
+#' *require* that you pass in example training data as `prototype_data`
+#' or else explicitly set `save_prototype = FALSE`. For non-rectangular data
+#' input to models, such as image input for a keras or torch model, we currently
+#' recommend that you turn off prototype checking via `save_prototype = FALSE`.
+#'
 #' @return A new `vetiver_model` object.
 #'
 #' @examples
 #'
 #' cars_lm <- lm(mpg ~ ., data = mtcars)
-#' vetiver_model(cars_lm, "cars_linear", pins::board_temp())
+#' vetiver_model(cars_lm, "cars-linear")
 #'
 #' @export
 vetiver_model <- function(model,
@@ -52,6 +59,7 @@ vetiver_model <- function(model,
                           save_ptype = deprecated(),
                           versioned = NULL) {
 
+    ellipsis::check_dots_used()
     if (lifecycle::is_present(save_ptype)) {
         lifecycle::deprecate_soft(
             "0.2.0",
@@ -107,7 +115,11 @@ format.vetiver_model <- function(x, ...) {
     first_class <- class(x$model)[[1]]
     cli::cli_format_method({
         cli::cli_h3("{.emph {x$model_name}} {cli::symbol$line} {.cls {first_class}} model for deployment")
-        cli::cli_text("{x$description} using {ncol(x$prototype)} feature{?s}")
+        if (is.null(x$prototype)) {
+            cli::cli_text("{x$description}")
+        } else {
+            cli::cli_text("{x$description} using {ncol(x$prototype)} feature{?s}")
+        }
     })
 }
 
@@ -119,6 +131,7 @@ print.vetiver_model <- function(x, ...) {
 
 #' @export
 predict.vetiver_model <- function(object, ...) {
+    ellipsis::check_dots_used()
     model <- bundle::unbundle(object$model)
     predict(model, ...)
 }
@@ -127,6 +140,7 @@ predict.vetiver_model <- function(object, ...) {
 
 #' @export
 augment.vetiver_model <- function(x, ...) {
+    ellipsis::check_dots_used()
     model <- bundle::unbundle(x$model)
     augment(model, ...)
 }

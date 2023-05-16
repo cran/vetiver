@@ -23,20 +23,21 @@ test_that("can pin a gam model", {
         pinned,
         list(
             model = butcher::butcher(mtcars_gam),
-            prototype = vctrs::vec_ptype(tibble::as_tibble(mtcars[, c(3, 6)])),
-            required_pkgs = "mgcv"
+            prototype = vctrs::vec_ptype(tibble::as_tibble(mtcars[, c(3, 6)]))
         ),
         ignore_function_env = TRUE,
         ignore_formula_env = TRUE
+    )
+    expect_equal(
+        pin_meta(b, "cars_gam")$user$required_pkgs,
+        "mgcv"
     )
 })
 
 test_that("default endpoint for gam", {
     p <- pr() %>% vetiver_api(v)
     p_routes <- p$routes[-1]
-    expect_equal(names(p_routes), c("ping", "predict"))
-    expect_equal(map_chr(p_routes, "verbs"),
-                 c(ping = "GET", predict = "POST"))
+    expect_api_routes(p_routes)
 })
 
 test_that("default OpenAPI spec", {

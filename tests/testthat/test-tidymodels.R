@@ -36,18 +36,19 @@ test_that("can pin a tidymodels model", {
         pinned,
         list(
             model = bundle::bundle(butcher::butcher(mtcars_wf)),
-            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0),
-            required_pkgs = c("parsnip", "ranger", "workflows")
+            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0)
         )
+    )
+    expect_equal(
+        pin_meta(b, "cars_wf")$user$required_pkgs,
+        c("parsnip", "ranger", "workflows")
     )
 })
 
 test_that("default endpoint for tidymodels", {
     p <- pr() %>% vetiver_api(v)
     p_routes <- p$routes[-1]
-    expect_equal(names(p_routes), c("ping", "predict"))
-    expect_equal(map_chr(p_routes, "verbs"),
-                 c(ping = "GET", predict = "POST"))
+    expect_api_routes(p_routes)
 })
 
 test_that("default OpenAPI spec", {

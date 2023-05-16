@@ -349,6 +349,7 @@ your trained model including:</p>
 <li>sharing</li>
 <li>deploying</li>
 </ul>
+<p>For more extensive documentation, visit <a href="https://vetiver.rstudio.com/" class="uri">https://vetiver.rstudio.com/</a>.</p>
 <div id="create-a-vetiver_model" class="section level2">
 <h2>Create a <code>vetiver_model()</code></h2>
 <p>The vetiver package is extensible, with generics that can support
@@ -387,7 +388,7 @@ encompasses both feature engineering and model estimation.</p>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 1262.  67.0 Two  </span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9  985.  62.0 Two  </span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10  893.  56.8 Two  </span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 999 more rows</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 999 more rows</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>biv_rec <span class="ot">&lt;-</span></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(Class <span class="sc">~</span> ., <span class="at">data =</span> bivariate_train) <span class="sc">%&gt;%</span></span>
@@ -443,8 +444,8 @@ write it once more to our board.</p>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   version                created             hash </span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                  &lt;dttm&gt;              &lt;chr&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 20230126T195846Z-28e44 2023-01-26 12:58:46 28e44</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20230126T195846Z-e681c 2023-01-26 12:58:46 e681c</span></span></code></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 20230516T134433Z-3371c 2023-05-16 07:44:33 3371c</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 20230516T134433Z-cc479 2023-05-16 07:44:33 cc479</span></span></code></pre></div>
 <p>The primary purpose of pins is to make it easy to share data
 artifacts, so depending on the board you choose, your pinned
 <code>vetiver_model()</code> can be shareable with your
@@ -457,16 +458,17 @@ endpoint for making predictions.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plumber)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pr</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vetiver_api</span>(v)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Plumber router with 2 endpoints, 4 filters, and 1 sub-router.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Plumber router with 3 endpoints, 4 filters, and 1 sub-router.</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Use `pr_run()` on this object to start the API.</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[queryString]</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[body]</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[cookieParser]</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──[sharedSecret]</span></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/logo</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/Rtmprrt6XO/Rinst17146364b5075/vetiver</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/ping (GET)</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └──/predict (POST)</span></span></code></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/Rtmpmt9FcR/Rinst16e2c51a3f76e/vetiver</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/metadata (GET)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ├──/ping (GET)</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; └──/predict (POST)</span></span></code></pre></div>
 <p>To start a server using this object, pipe (<code>%&gt;%</code>) to
 <code>pr_run(port = 8088)</code> or your port of choice. This allows you
 to interact with your vetiver API locally and debug it. Plumber APIs
@@ -490,8 +492,8 @@ if (FALSE) {
     library(recipes)
     library(workflows)
 }
-b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpOHxDMJ/pins-171766599695&quot;)
-v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20230126T195846Z-28e44&quot;)
+b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpxjnW3s/pins-16e6840974ddd&quot;)
+v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20230516T134433Z-3371c&quot;)
 
 #* @plumber
 function(pr) {

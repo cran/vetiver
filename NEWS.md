@@ -1,6 +1,18 @@
-# vetiver 0.2.0
+# vetiver 0.2.1
 
-# vetiver (development version, to be released as 0.2.0)
+* Added support for keras (#164), recipes (#179), and luz (#187, @dfalbel).
+
+* Moved where `required_pkgs` metadata is stored remotely, from the binary blob to plain text YAML (#176).
+
+* Added an optional renv lockfile that can be stored remotely in model metadata, with a new `check_renv` argument for reading/writing (#154, #192).
+
+* Exposed a new `base_image` argument for creating Dockerfiles (#182).
+
+* Added new `vetiver_deploy_sagemaker()` function plus `vetiver_endpoint_sagemaker()` and other needed functionality for deploying on Amazon SageMaker (#186, @DyfanJones).
+
+* Added new additional GET endpoint for model `/metadata` (#194).
+
+# vetiver 0.2.0
 
 ## Breaking changes
 

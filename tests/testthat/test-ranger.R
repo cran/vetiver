@@ -31,7 +31,7 @@ test_that("can pin an ranger model", {
         vctrs::vec_slice(tibble::as_tibble(mtcars[,-1]), 0)
     )
     expect_equal(
-        pinned$required_pkgs,
+        pin_meta(b, "cars3")$user$required_pkgs,
         "ranger"
     )
 })
@@ -39,9 +39,7 @@ test_that("can pin an ranger model", {
 test_that("default endpoint for ranger", {
     p <- pr() %>% vetiver_api(v)
     p_routes <- p$routes[-1]
-    expect_equal(names(p_routes), c("ping", "predict"))
-    expect_equal(map_chr(p_routes, "verbs"),
-                 c(ping = "GET", predict = "POST"))
+    expect_api_routes(p_routes)
 })
 
 test_that("default OpenAPI spec", {

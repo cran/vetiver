@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# vetiver <a href='https://rstudio.github.io/vetiver-r/'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# vetiver <a href='https://rstudio.github.io/vetiver-r/'><img src="man/figures/logo.png" align="right" height="138" /></a>
 
 <!-- badges: start -->
 
@@ -29,7 +29,8 @@ learn more about vetiver, see:
 
 You can use vetiver with:
 
-- a [tidymodels](https://www.tidymodels.org/) workflow
+- a [tidymodels](https://www.tidymodels.org/) workflow (including
+  [stacks](https://stacks.tidymodels.org/))
 - [caret](https://topepo.github.io/caret/)
 - [mlr3](https://mlr3.mlr-org.com/)
 - [XGBoost](https://xgboost.readthedocs.io/en/latest/R-package/)
@@ -38,6 +39,8 @@ You can use vetiver with:
   and
   [`glm()`](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/glm.html)
 - GAMS fit with [mgcv](https://CRAN.R-project.org/package=mgcv)
+- [keras](https://tensorflow.rstudio.com/)
+- [the luz API for torch](https://torch.mlverse.org/)
 
 ## Installation
 
@@ -51,8 +54,8 @@ install.packages("vetiver")
 And the development version from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("rstudio/vetiver-r")
+# install.packages("pak")
+pak::pak("rstudio/vetiver-r")
 ```
 
 ## Example

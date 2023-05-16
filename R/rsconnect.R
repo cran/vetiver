@@ -6,7 +6,7 @@
 #'
 #' @inheritParams vetiver_write_plumber
 #' @param predict_args A list of optional arguments passed to [vetiver_api()]
-#' such as the endpoint `path` or prediction `type`.
+#' such as the prediction `type`.
 #' @param appTitle The API title on RStudio Connect. Use the default based on
 #' `name`, or pass in your own title.
 #' @param ... Other arguments passed to [rsconnect::deployApp()] such as
@@ -50,13 +50,13 @@ vetiver_deploy_rsconnect <- function(board, name, version = NULL,
                                      appTitle = glue::glue("{name} model API"),
                                      ...) {
 
+    ellipsis::check_dots_used()
     tmp <- fs::dir_create(tempdir(), "vetiver")
     vetiver_write_plumber(board = board,
                           name = name,
                           version = version,
                           !!!predict_args,
-                          file = file.path(tmp, "plumber.R"))
-
+                          file = fs::path(tmp, "plumber.R"))
     rsconnect::deployAPI(tmp, appTitle = appTitle, ...)
 
 }

@@ -22,20 +22,21 @@ test_that("can pin a glm model", {
         pinned,
         list(
             model = butcher::butcher(mtcars_glm),
-            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0),
-            required_pkgs = NULL
+            prototype = vctrs::vec_slice(tibble::as_tibble(mtcars[,2:11]), 0)
         ),
         ignore_function_env = TRUE,
         ignore_formula_env = TRUE
+    )
+    expect_equal(
+        pin_meta(b, "cars_glm")$user$required_pkgs,
+        NULL
     )
 })
 
 test_that("default endpoint for glm", {
     p <- pr() %>% vetiver_api(v)
     p_routes <- p$routes[-1]
-    expect_equal(names(p_routes), c("ping", "predict"))
-    expect_equal(map_chr(p_routes, "verbs"),
-                 c(ping = "GET", predict = "POST"))
+    expect_api_routes(p_routes)
 })
 
 test_that("default OpenAPI spec", {
