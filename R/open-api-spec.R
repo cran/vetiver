@@ -140,6 +140,9 @@ api_spec <- function(spec, vetiver_model, path, all_docs = TRUE) {
     if ("/metadata" %in% names(spec$paths)) {
         spec$paths$`/metadata`$get$summary <- "Get all metadata of pinned vetiver model"
     }
+    if ("/prototype" %in% names(spec$paths)) {
+        spec$paths$`/prototype`$get$summary <- "Get input data prototype for vetiver model"
+    }
     if ("/ping" %in% names(spec$paths)) {
         spec$paths$`/ping`$get$summary <- "Health check"
     }
@@ -166,6 +169,11 @@ api_spec <- function(spec, vetiver_model, path, all_docs = TRUE) {
             spec <- update_spec(spec, endpoint, endpoint_summary, request_body)
         }
     }
+
+    if (has_connect_redirect(spec)) {
+        spec$paths$`/` <- NULL
+    }
+
     spec
 }
 
@@ -177,6 +185,19 @@ update_spec <- function(spec, endpoint, summary, request_body) {
         responses = orig_post$responses
     )
     spec
+}
+
+has_connect_redirect <- function(spec) {
+    endpoint <- spec$paths$`/`
+    summary <- endpoint$get$summary
+    connect_summary <-
+        grepl("^This endpoint was added to automatically redirect visitors", summary)
+
+    if (is.null(endpoint) || is.null(summary) || !connect_summary) {
+        return(FALSE)
+    } else {
+        return(TRUE)
+    }
 }
 
 #' @rdname api_spec

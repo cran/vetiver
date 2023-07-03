@@ -3,9 +3,14 @@ library(plumber)
 
 test_that("default endpoint", {
     p <- pr() %>% vetiver_api(v)
-    expect_equal(names(p$routes), c("logo", "metadata", "ping", "predict"))
-    expect_equal(map_chr(p$routes[-1], "verbs"),
-                 c(metadata = "GET", ping = "GET", predict = "POST"))
+    expect_equal(
+        names(p$routes),
+        c("logo", "metadata", "ping", "predict", "prototype")
+    )
+    expect_equal(
+        map_chr(p$routes[-1], "verbs"),
+        c(metadata = "GET", ping = "GET", predict = "POST", prototype = "GET")
+    )
 })
 
 test_that("old function is deprecated", {
@@ -22,9 +27,18 @@ test_that("default endpoint via modular functions", {
 test_that("pin URL endpoint", {
     v$metadata <- list(url = "potato")
     p <- pr() %>% vetiver_api(v)
-    expect_equal(names(p$routes), c("logo", "metadata", "pin-url", "ping", "predict"))
-    expect_equal(map_chr(p$routes[-1], "verbs"),
-                 c(metadata = "GET", `pin-url` = "GET", ping = "GET", predict = "POST"))
+    expect_equal(
+        names(p$routes),
+        c("logo", "metadata", "pin-url", "ping", "predict", "prototype")
+    )
+    expect_equal(
+        map_chr(p$routes[-1], "verbs"),
+        c(metadata = "GET",
+          `pin-url` = "GET",
+          ping = "GET",
+          predict = "POST",
+          prototype = "GET")
+    )
 })
 
 test_that("default OpenAPI spec", {
@@ -45,6 +59,9 @@ test_that("default OpenAPI spec", {
     get_spec2 <- car_spec$paths$`/metadata`$get
     expect_equal(as.character(get_spec2$summary),
                  "Get all metadata of pinned vetiver model")
+    get_spec3 <- car_spec$paths$`/prototype`$get
+    expect_equal(as.character(get_spec3$summary),
+                 "Get input data prototype for vetiver model")
 
 })
 
@@ -107,9 +124,12 @@ test_that("OpenAPI spec with custom ptype", {
                                         disp = list(type = "number"))))
     expect_equal(post_spec$requestBody$content$`application/json`$schema$example,
                  purrr::transpose(car_ptype))
+    expect_equal(car_spec$paths$`/prototype`$get$summary,
+                 "Get input data prototype for vetiver model")
+
 })
 
-test_that("OpenAPI spec with additional endpoint", {
+test_that("OpenAPI spec with additional endpoints", {
     v$metadata <- list(url = "potatoes")
 
     another_handler <- function(req) {
@@ -120,11 +140,17 @@ test_that("OpenAPI spec with additional endpoint", {
     p <- pr() %>%
         vetiver_pr_post(v) %>%
         pr_post(path = "/sum", handler = another_handler) %>%
+        pr_get(
+            "/",
+            function() "Hello World",
+            ## to test Connect redirect:
+            comments = "This endpoint was added to automatically redirect visitors"
+        ) %>%
         vetiver_pr_docs(v)
 
     car_spec <- p$getApiSpec()
-    expect_equal(sort(names(car_spec$paths)),
-                 sort(paste0("/", names(p$routes[-1]))))
+    expect_equal(car_spec$path$`/`, NULL)
+    expect_true(all(names(car_spec$paths) %in% paste0("/", names(p$routes))))
 
     post_spec <- car_spec$paths$`/predict`$post
     sum_spec <- car_spec$paths$`/sum`$post

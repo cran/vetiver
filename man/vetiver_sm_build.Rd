@@ -49,8 +49,8 @@ vetiver_sm_endpoint(
 )
 }
 \arguments{
-\item{board}{A pin board, created by \code{\link[pins:board_folder]{board_folder()}}, \code{\link[pins:board_connect]{board_connect()}},
-\code{\link[pins:board_url]{board_url()}} or another \code{board_} function.}
+\item{board}{An AWS S3 board created with \code{\link[pins:board_s3]{pins::board_s3()}}. This board
+must be in the correct region for your SageMaker instance.}
 
 \item{name}{Pin name.}
 
@@ -74,8 +74,13 @@ Defaults to \verb{sagemaker-studio-$\{domain_id\}:latest}.}
 \item{compute_type}{The \href{https://aws.amazon.com/codebuild/}{CodeBuild}
 compute type as a character. Defaults to \code{BUILD_GENERAL1_SMALL}.}
 
-\item{role}{The ARN role for the Amazon SageMaker model. Defaults to the
-SageMaker execution role.}
+\item{role}{The ARN IAM role name (as a character) to be used with:
+\itemize{
+\item CodeBuild for \code{vetiver_sm_build()}
+\item the SageMaker model for \code{vetiver_sm_model()}
+}
+
+Defaults to the SageMaker Studio execution role.}
 
 \item{bucket}{The S3 bucket to use for sending data to CodeBuild as a
 character. Defaults to the SageMaker SDK default bucket.}
