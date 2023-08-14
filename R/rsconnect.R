@@ -10,7 +10,7 @@
 #' @param appTitle The API title on Posit Connect. Use the default based on
 #' `name`, or pass in your own title.
 #' @param ... Other arguments passed to [rsconnect::deployApp()] such as
-#' `account` or `launch.browser`.
+#' `appName`, `account`, or `launch.browser`.
 #'
 #' @details The two functions `vetiver_deploy_rsconnect()` and
 #' [vetiver_create_rsconnect_bundle()] are alternatives to each other, providing
@@ -124,4 +124,8 @@ vetiver_create_rsconnect_bundle <- function(
     inform(c("Your rsconnect bundle has been created at:", filename))
     invisible(filename)
 
+}
+
+mock_write_manifest <- function(appDir, appFiles) {
+    fs::file_create(fs::path(appDir, "manifest.json"))
 }

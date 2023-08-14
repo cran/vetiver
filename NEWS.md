@@ -1,3 +1,7 @@
+# vetiver 0.2.3
+
+* Updated test involving renv and rsconnect (#230).
+
 # vetiver 0.2.2
 
 * Fixed a bug in where `vetiver_write_docker()` writes the renv lockfile (#212).

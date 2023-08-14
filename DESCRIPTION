@@ -1,6 +1,6 @@
 Package: vetiver
 Title: Version, Share, Deploy, and Monitor Models
-Version: 0.2.2
+Version: 0.2.3
 Authors@R: c(
     person("Julia", "Silge", , "julia.silge@posit.co", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-3671-836X")),
@@ -34,9 +34,9 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-07-03 17:55:54 UTC; juliasilge
+Packaged: 2023-08-14 17:42:01 UTC; juliasilge
 Author: Julia Silge [cre, aut] (<https://orcid.org/0000-0002-3671-836X>),
   Posit Software, PBC [cph, fnd]
 Maintainer: Julia Silge <julia.silge@posit.co>
 Repository: CRAN
-Date/Publication: 2023-07-03 18:10:02 UTC
+Date/Publication: 2023-08-14 18:00:02 UTC
