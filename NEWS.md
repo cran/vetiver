@@ -1,3 +1,7 @@
+# vetiver 0.2.4
+
+* Fixed how plumber files are generated for `board_url()` (#241).
+
 # vetiver 0.2.3
 
 * Updated test involving renv and rsconnect (#230).
@@ -118,7 +122,7 @@
 
 * New function `vetiver_deploy_rsconnect()` to deploy to RStudio Connect.
 
-* Added R Markdown template for [Model Card](https://doi.org/10.1145/3287560.3287596) for responsible, transparent model reporting (#62, #63).
+* Added R Markdown template for Model Card for responsible, transparent model reporting (#62, #63).
 
 * Modularized `vetiver_pr_predict()` to support more advanced use cases (#67).
 

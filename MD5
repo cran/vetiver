@@ -1,7 +1,7 @@
-4ebdb8fc6d2b437774a888d5a81ed6f5 *DESCRIPTION
+6d97cca86b1c570c2caf4f2879b2cbd4 *DESCRIPTION
 d0ff4daf2c8a55b524e9f6ce01173641 *LICENSE
 8e7220a10294ad039557883b758a1bc9 *NAMESPACE
-b7173b688ba408dc36d69a4a6c7bbd52 *NEWS.md
+a6f263d1859813ff270f9237b9d4febe *NEWS.md
 2a4df0c7a8bfc09394db44aa9e91ce53 *R/api.R
 f0ef912ea46ca16a591184b048845401 *R/attach-pkgs.R
 fd3fc83dd6d5f9e02c758a1fc83795f5 *R/caret.R
@@ -20,12 +20,12 @@ c88f3ee4b50d8447aaa66db7409e9bdc *R/luz.R
 70c034d778610eb01a0e3412ddffee25 *R/mlr3.R
 c788ef522ea86e462773da225915a79a *R/monitor.R
 c6121708099980efcc1a45b8f899aeae *R/open-api-spec.R
-420ab1ab31b9e51ae1cb15e8be0cf48d *R/pin-read-write.R
+9bc79d7a637246c20657893c90e19703 *R/pin-read-write.R
 94081a4e57b2639cf785ad4a6a6d3737 *R/prepare.R
 e36a61ead8e4138928bbbfde95f179e9 *R/prototype.R
 340c62092b726c94617ad562c2d3d9ac *R/ranger.R
 6546edb630241e0b450ff3c5ae7cc113 *R/recipe.R
-a7ca0ac338a30efa6b24215b452687fc *R/renv.R
+ad6b43299e8366d564e02639c7bd5f47 *R/renv.R
 4a9e5fac8fbfe0ddc71c2e3129de4702 *R/rsconnect.R
 20590eeb952b97f3cb069f1167473ff5 *R/sagemaker-utils.R
 597065d079c85bc21840bed0004a25ab *R/sagemaker.R
@@ -34,7 +34,7 @@ ca8f7059c50a8a67ee59f59786518efa *R/tidymodels.R
 47f4fe56edcbef0a3e8656dcdd35a3a3 *R/vetiver-model.R
 2170e84966351796724df0b4ba7e7132 *R/vetiver-package.R
 42e0b84f67baabdeb72d85527db8759b *R/write-docker.R
-6d15e162329a0bad287d3d584f62e0f4 *R/write-plumber.R
+8d8df34df423c626c284b59fc85e612e *R/write-plumber.R
 b3eed33191d63a8ac0991f32334ff29c *R/xgboost.R
 58310929f3a516c379798e4d1fb35632 *R/zzz.R
 20b958c782d080259f275df558da784c *README.md
@@ -43,7 +43,7 @@ b3eed33191d63a8ac0991f32334ff29c *R/xgboost.R
 5ed8003ca8858c3f5e93b0c0c4ea8097 *inst/chicago_rpart.R
 274a745ad9ff733a204d77a21d8899d4 *inst/doc/vetiver.R
 27c5216dae42ba906a8d82adeb8e738a *inst/doc/vetiver.Rmd
-97821540024edb370ce5b34ffcda3c69 *inst/doc/vetiver.html
+10059e7034536f14f263e60c48207589 *inst/doc/vetiver.html
 0d8f1016bf326b750c94ae17a1ad5934 *inst/mtcars_keras.R
 a568a27f49959d5479ab677ca1b57bad *inst/mtcars_lm.R
 bf598169027251f1ee7c11922a82c532 *inst/mtcars_luz.R
@@ -64,7 +64,7 @@ f040d7c7d4c13691997803332274b6c7 *inst/rmarkdown/templates/vetiver_dashboard/ske
 72027a2aad9605acb30ab448d8edbe7b *inst/rmarkdown/templates/vetiver_model_card/skeleton/skeleton.Rmd
 fc3c04f474443259927c7c10cc5651c0 *inst/rmarkdown/templates/vetiver_model_card/skeleton/skeleton.html
 7f2c594e368163b6bfeac3bc32a91fb8 *inst/rmarkdown/templates/vetiver_model_card/template.yaml
-42c2527b336097e9cdc4e6a1c880db71 *inst/vendor/renv.R
+72ed7b2ee3f8ffba04e477191779e83b *inst/vendor/renv.R
 b0e82e70aeeb88d6a4ffd69aceb88997 *inst/vetiver.png
 03977b29f9a0d86d3668ea034e878d7f *man/api_spec.Rd
 83a3364e262b6e4029c05b7f7a98e6ae *man/attach_pkgs.Rd
@@ -136,7 +136,7 @@ cdf0c1c86c644b99c2cc548d55a76b0b *tests/testthat/_snaps/type-convert.md
 02619a1d4e96e8a572aac77d793ea69f *tests/testthat/_snaps/write-plumber.md
 63f9338f4b574e8db49b3f48dc08662f *tests/testthat/_snaps/xgboost.md
 95638015d89bafbf768f93f9c90b1aa3 *tests/testthat/helper.R
-9477652bc8eccd31e06a3b197cf34a3b *tests/testthat/setup.R
+d9fbcc2d0a70e68b6534c55543883e86 *tests/testthat/setup.R
 3dea807c9a61d3070d7d2903c4c009cd *tests/testthat/test-api.R
 e5c491cc497e22a45f61439507ee0300 *tests/testthat/test-attach-pkgs.R
 1af75db9fd0fcbd07794e3f947a0bcac *tests/testthat/test-caret.R
@@ -150,7 +150,7 @@ f556ce5356db0bf9d17f6886b4b252f0 *tests/testthat/test-glm.R
 7c0dc49cedd64e8ea0c5e0c31eee0ae7 *tests/testthat/test-luz.R
 b5f18af9d1124ea55ad231af3c84dd9d *tests/testthat/test-mlr3.R
 bb5afa02326cad5dfaf364414fe662df *tests/testthat/test-monitor.R
-0f15ff4f6f28fa0284ae50e9a4c7d014 *tests/testthat/test-pin-read-write.R
+54bee600030e3af681acc91be019135a *tests/testthat/test-pin-read-write.R
 9f5a685da132545e2db0b8e3b6249342 *tests/testthat/test-predict.R
 0ce1c3aedd3878b1068dede6a1bcb6c2 *tests/testthat/test-ranger.R
 1b70fba87293bf78ecda97a9c583963d *tests/testthat/test-recipe.R
@@ -159,7 +159,7 @@ f125581a645e32d92a352a7da0af300f *tests/testthat/test-rsconnect.R
 c57739eda88e55437a53f5d196d9eeef *tests/testthat/test-stacks.R
 311e4a7015f1691f8dd083e66778fdfe *tests/testthat/test-tidymodels.R
 19f6883e40844ed2b6c3e5c69d46da09 *tests/testthat/test-type-convert.R
-a931eb2f94a5d7408693b5b5fe66b215 *tests/testthat/test-write-docker.R
+47e7abf7b660fbcc2084f634e979ab96 *tests/testthat/test-write-docker.R
 5a5e6b5425e5c389b816ffbbb5bcdaf3 *tests/testthat/test-write-plumber.R
 eca28d06c57aad40689fba028434db23 *tests/testthat/test-xgboost.R
 35c2ad10c07b09d3aad0fea162c5aca0 *tests/testthat/vetiver_renv.lock
