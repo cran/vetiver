@@ -1,3 +1,7 @@
+# vetiver 0.2.5
+
+* Fixed bug in generating plumber files (#257).
+
 # vetiver 0.2.4
 
 * Fixed how plumber files are generated for `board_url()` (#241).

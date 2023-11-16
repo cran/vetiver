@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# vetiver <a href='https://rstudio.github.io/vetiver-r/'><img src="man/figures/logo.png" align="right" height="138" /></a>
+# vetiver <a href="https://rstudio.github.io/vetiver-r/"><img src="man/figures/logo.png" align="right" height="138" alt="vetiver website" /></a>
 
 <!-- badges: start -->
 
