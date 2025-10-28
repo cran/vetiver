@@ -1,6 +1,6 @@
 Package: vetiver
 Title: Version, Share, Deploy, and Monitor Models
-Version: 0.2.5
+Version: 0.2.6
 Authors@R: c(
     person("Julia", "Silge", , "julia.silge@posit.co", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-3671-836X")),
@@ -12,31 +12,32 @@ Description: The goal of 'vetiver' is to provide fluent tooling to
     predicting from a remote API endpoint. The 'vetiver' package is
     extensible, with generics that can support many kinds of models.
 License: MIT + file LICENSE
-URL: https://vetiver.rstudio.com, https://rstudio.github.io/vetiver-r/,
+URL: https://vetiver.posit.co, https://rstudio.github.io/vetiver-r/,
         https://github.com/rstudio/vetiver-r/
 BugReports: https://github.com/rstudio/vetiver-r/issues
 Depends: R (>= 3.6)
-Imports: bundle, butcher (>= 0.3.1), cereal, cli, ellipsis, fs,
-        generics, glue, hardhat, lifecycle, magrittr (>= 2.0.3), pins
-        (>= 1.3.0), purrr, rapidoc, readr (>= 1.4.0), rlang (>= 1.1.0),
-        tibble, vctrs, withr
+Imports: bundle, butcher (>= 0.3.1), cereal, cli, fs, generics, glue,
+        hardhat, lifecycle, magrittr (>= 2.0.3), pins (>= 1.3.0),
+        purrr, rapidoc, readr (>= 1.4.0), rlang (>= 1.1.0), tibble,
+        vctrs, withr
 Suggests: arrow, callr, caret, clustMixType, covr, curl, dplyr,
         flexdashboard, ggplot2, httpuv, httr, jsonlite, keras, knitr,
-        LiblineaR, luz, mgcv, mlr3, mlr3data, mlr3learners, mockery,
-        modeldata, parsnip, paws.machine.learning (>= 0.2.0), pingr,
-        plotly, plumber (>= 1.0.0), ranger, recipes, reticulate,
-        rmarkdown, rpart, rsconnect, slider (>= 0.2.2), smdocker (>=
-        0.1.2), stacks, tensorflow, testthat (>= 3.1.8), tidyselect,
-        torch, vdiffr, workflows, xgboost, yardstick
+        LiblineaR, luz, mgcv, mlr3 (>= 0.17.0), mlr3data, mlr3learners,
+        mockery, modeldata, parsnip, paws.machine.learning (>= 0.2.0),
+        pingr, plotly, plumber (>= 1.0.0), probably (>= 1.2.0),
+        quantregForest, ranger, recipes (>= 1.1.0), reticulate,
+        rmarkdown, rpart, rsample, rsconnect, slider (>= 0.2.2),
+        smdocker (>= 0.1.2), stacks, tensorflow, testthat (>= 3.1.8),
+        tidyselect, torch, tune, vdiffr, workflows, xgboost, yardstick
 VignetteBuilder: knitr
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 NeedsCompilation: no
-Packaged: 2023-11-16 22:12:03 UTC; juliasilge
-Author: Julia Silge [cre, aut] (<https://orcid.org/0000-0002-3671-836X>),
+Packaged: 2025-10-28 14:53:53 UTC; juliasilge
+Author: Julia Silge [cre, aut] (ORCID: <https://orcid.org/0000-0002-3671-836X>),
   Posit Software, PBC [cph, fnd]
 Maintainer: Julia Silge <julia.silge@posit.co>
 Repository: CRAN
-Date/Publication: 2023-11-16 22:50:02 UTC
+Date/Publication: 2025-10-28 15:50:02 UTC

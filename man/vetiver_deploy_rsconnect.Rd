@@ -10,7 +10,8 @@ vetiver_deploy_rsconnect(
   version = NULL,
   predict_args = list(),
   appTitle = glue::glue("{name} model API"),
-  ...
+  ...,
+  additional_pkgs = character(0)
 )
 }
 \arguments{
@@ -30,14 +31,16 @@ such as the prediction \code{type}.}
 
 \item{...}{Other arguments passed to \code{\link[rsconnect:deployApp]{rsconnect::deployApp()}} such as
 \code{appName}, \code{account}, or \code{launch.browser}.}
+
+\item{additional_pkgs}{Any additional R packages that need to be \strong{attached}
+via \code{\link[=library]{library()}} to run your API, as a character vector.}
 }
 \value{
 The deployment success (\code{TRUE} or \code{FALSE}), invisibly.
 }
 \description{
 Use \code{vetiver_deploy_rsconnect()} to deploy a \code{\link[=vetiver_model]{vetiver_model()}} that has been
-versioned and stored via \code{\link[=vetiver_pin_write]{vetiver_pin_write()}} as a Plumber API on RStudio
-Connect.
+versioned and stored via \code{\link[=vetiver_pin_write]{vetiver_pin_write()}} as a Plumber API on \href{https://docs.posit.co/connect/}{Posit Connect}.
 }
 \details{
 The two functions \code{vetiver_deploy_rsconnect()} and
@@ -52,7 +55,7 @@ will need to pass authentication details with your API call,
 \href{https://docs.posit.co/connect/user/vetiver/#predict-from-your-model-endpoint}{as shown in the Connect documentation}.
 }
 \examples{
-\dontshow{if (rlang::is_installed("rsconnect")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("rsconnect")) withAutoprint(\{ # examplesIf}
 library(pins)
 b <- board_temp(versioned = TRUE)
 cars_lm <- lm(mpg ~ ., data = mtcars)

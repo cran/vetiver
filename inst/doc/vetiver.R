@@ -53,7 +53,7 @@ pr() %>%
   vetiver_api(v)
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  vetiver_write_plumber(model_board, "biv_svm")
+# vetiver_write_plumber(model_board, "biv_svm")
 
 ## ----echo=FALSE, comment = ""-------------------------------------------------
 tmp <- tempfile()

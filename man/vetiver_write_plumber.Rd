@@ -10,7 +10,8 @@ vetiver_write_plumber(
   version = NULL,
   ...,
   file = "plumber.R",
-  rsconnect = TRUE
+  rsconnect = TRUE,
+  additional_pkgs = character(0)
 )
 }
 \arguments{
@@ -29,6 +30,9 @@ find out which versions are available and when they were created.}
 working directory. See \code{\link[plumber:plumb]{plumber::plumb()}} for naming precedence rules.}
 
 \item{rsconnect}{Create a Plumber file with features needed for \href{https://posit.co/products/enterprise/connect/}{Posit Connect}? Defaults to \code{TRUE}.}
+
+\item{additional_pkgs}{Any additional R packages that need to be \strong{attached}
+via \code{\link[=library]{library()}} to run your API, as a character vector.}
 }
 \value{
 The content of the \code{plumber.R} file, invisibly.
@@ -45,7 +49,7 @@ version. You can override this default behavior by choosing a specific
 \code{version}.
 }
 \examples{
-\dontshow{if (rlang::is_installed("plumber")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("plumber")) withAutoprint(\{ # examplesIf}
 library(pins)
 tmp <- tempfile()
 b <- board_temp(versioned = TRUE)

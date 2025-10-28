@@ -48,6 +48,7 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -349,7 +350,7 @@ your trained model including:</p>
 <li>sharing</li>
 <li>deploying</li>
 </ul>
-<p>For more extensive documentation, visit <a href="https://vetiver.rstudio.com/" class="uri">https://vetiver.rstudio.com/</a>.</p>
+<p>For more extensive documentation, visit <a href="https://vetiver.posit.co/" class="uri">https://vetiver.posit.co/</a>.</p>
 <div id="create-a-vetiver_model" class="section level2">
 <h2>Create a <code>vetiver_model()</code></h2>
 <p>The vetiver package is extensible, with generics that can support
@@ -410,10 +411,13 @@ data <code>bivariate_train</code>. We can create a
 version, and deploy a trained model.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">library</span>(vetiver)</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">vetiver_model</span>(svm_fit, <span class="st">&quot;biv_svm&quot;</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>v</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; ── biv_svm ─ &lt;bundled_workflow&gt; model for deployment </span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; A LiblineaR classification modeling workflow using 2 features</span></span></code></pre></div>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; Registered S3 method overwritten by &#39;butcher&#39;:</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt;   method                 from    </span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;   as.character.dev_topic generics</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>v</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; ── biv_svm ─ &lt;bundled_workflow&gt; model for deployment </span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; A LiblineaR classification modeling workflow using 2 features</span></span></code></pre></div>
 <p>Think of this <code>vetiver_model()</code> as a deployable model
 object.</p>
 </div>
@@ -444,8 +448,8 @@ write it once more to our board.</p>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 × 3</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt;   version                created             hash </span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                  &lt;dttm&gt;              &lt;chr&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; 1 20231116T221202Z-6c5c6 2023-11-16 15:12:02 6c5c6</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 2 20231116T221202Z-fa418 2023-11-16 15:12:02 fa418</span></span></code></pre></div>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt; 1 20251028T145350Z-96904 2025-10-28 08:53:50 96904</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 2 20251028T145350Z-b3d4e 2025-10-28 08:53:50 b3d4e</span></span></code></pre></div>
 <p>The primary purpose of pins is to make it easy to share data
 artifacts, so depending on the board you choose, your pinned
 <code>vetiver_model()</code> can be shareable with your
@@ -465,7 +469,7 @@ endpoint for making predictions.</p>
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; ├──[cookieParser]</span></span>
 <span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; ├──[sharedSecret]</span></span>
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; ├──/logo</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/07/0sps_qnd3qd7fdj3cq9j8pqw0000gn/T/Rtmp7LVf7A/Rinst11f311b2fee48/vetiver</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; │  │ # Plumber static router serving from directory: /private/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/Rtmpxt4FC1/Rinst148a064428d03/vetiver</span></span>
 <span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; ├──/metadata (GET)</span></span>
 <span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; ├──/ping (GET)</span></span>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; ├──/predict (POST)</span></span>
@@ -493,8 +497,8 @@ if (FALSE) {
     library(recipes)
     library(workflows)
 }
-b &lt;- board_folder(path = &quot;/var/folders/07/0sps_qnd3qd7fdj3cq9j8pqw0000gn/T/Rtmp8ECyMW/pins-11f5f13e54036&quot;)
-v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20231116T221202Z-6c5c6&quot;)
+b &lt;- board_folder(path = &quot;/var/folders/hv/hzsmmyk9393_m7q3nscx1slc0000gn/T/RtmpKAzV3y/pins-148f07d2a48c&quot;)
+v &lt;- vetiver_pin_read(b, &quot;biv_svm&quot;, version = &quot;20251028T145350Z-96904&quot;)
 
 #* @plumber
 function(pr) {

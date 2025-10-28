@@ -1,3 +1,11 @@
+# vetiver 0.2.6
+
+* Added new `additional_pkgs` argument for writing plumber files (#271).
+
+* Updated to use recipes' new ability to provide input data prototype (#287).
+
+* Added support for probably (#294).
+
 # vetiver 0.2.5
 
 * Fixed bug in generating plumber files (#257).

@@ -1,8 +1,8 @@
 #' Deploy a vetiver model API to Posit Connect
 #'
 #' Use `vetiver_deploy_rsconnect()` to deploy a [vetiver_model()] that has been
-#' versioned and stored via [vetiver_pin_write()] as a Plumber API on RStudio
-#' Connect.
+#' versioned and stored via [vetiver_pin_write()] as a Plumber API on [Posit
+#' Connect](https://docs.posit.co/connect/).
 #'
 #' @inheritParams vetiver_write_plumber
 #' @param predict_args A list of optional arguments passed to [vetiver_api()]
@@ -55,23 +55,26 @@
 vetiver_deploy_rsconnect <- function(board, name, version = NULL,
                                      predict_args = list(),
                                      appTitle = glue::glue("{name} model API"),
-                                     ...) {
+                                     ...,
+                                     additional_pkgs = character(0)) {
 
-    ellipsis::check_dots_used()
+    check_dots_used()
     tmp <- fs::dir_create(tempdir(), "vetiver")
     vetiver_write_plumber(board = board,
                           name = name,
                           version = version,
                           !!!predict_args,
-                          file = fs::path(tmp, "plumber.R"))
+                          file = fs::path(tmp, "plumber.R"),
+                          additional_pkgs = additional_pkgs)
     rsconnect::deployAPI(tmp, appTitle = appTitle, ...)
 
 }
 
 #' Create an Posit Connect bundle for a vetiver model API
 #'
-#' Use `vetiver_create_rsconnect_bundle()` to create an Posit Connect model
-#' API bundle for a [vetiver_model()] that has been versioned and stored via
+#' Use `vetiver_create_rsconnect_bundle()` to create a 
+#' [Posit Connect](https://docs.posit.co/connect/) model API bundle for a 
+#' [vetiver_model()] that has been versioned and stored via 
 #' [vetiver_pin_write()].
 #'
 #' @inheritParams vetiver_write_plumber
@@ -110,14 +113,16 @@ vetiver_deploy_rsconnect <- function(board, name, version = NULL,
 vetiver_create_rsconnect_bundle <- function(
         board, name, version = NULL,
         predict_args = list(),
-        filename = fs::file_temp(pattern = "bundle", ext = ".tar.gz")) {
+        filename = fs::file_temp(pattern = "bundle", ext = ".tar.gz"),
+        additional_pkgs = character(0)) {
 
     tmp <- fs::dir_create(tempdir(), "vetiver")
     vetiver_write_plumber(board = board,
                           name = name,
                           version = version,
                           !!!predict_args,
-                          file = fs::path(tmp, "plumber.R"))
+                          file = fs::path(tmp, "plumber.R"),
+                          additional_pkgs = additional_pkgs)
     rsconnect::writeManifest(tmp, "plumber.R")
     withr::with_dir(
         tmp,

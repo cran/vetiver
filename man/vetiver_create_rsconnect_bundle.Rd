@@ -9,7 +9,8 @@ vetiver_create_rsconnect_bundle(
   name,
   version = NULL,
   predict_args = list(),
-  filename = fs::file_temp(pattern = "bundle", ext = ".tar.gz")
+  filename = fs::file_temp(pattern = "bundle", ext = ".tar.gz"),
+  additional_pkgs = character(0)
 )
 }
 \arguments{
@@ -26,13 +27,17 @@ such as the prediction \code{type}.}
 
 \item{filename}{The path for the model API bundle to be created (can be
 used as the argument to \code{connectapi::bundle_path()})}
+
+\item{additional_pkgs}{Any additional R packages that need to be \strong{attached}
+via \code{\link[=library]{library()}} to run your API, as a character vector.}
 }
 \value{
 The location of the model API bundle \code{filename}, invisibly.
 }
 \description{
-Use \code{vetiver_create_rsconnect_bundle()} to create an Posit Connect model
-API bundle for a \code{\link[=vetiver_model]{vetiver_model()}} that has been versioned and stored via
+Use \code{vetiver_create_rsconnect_bundle()} to create a
+\href{https://docs.posit.co/connect/}{Posit Connect} model API bundle for a
+\code{\link[=vetiver_model]{vetiver_model()}} that has been versioned and stored via
 \code{\link[=vetiver_pin_write]{vetiver_pin_write()}}.
 }
 \details{
@@ -47,7 +52,7 @@ The two functions \code{vetiver_create_rsconnect_bundle()} and
 different strategies for deploying a vetiver model API to Posit Connect.
 }
 \examples{
-\dontshow{if (rlang::is_installed("connectapi") && identical(Sys.getenv("NOT_CRAN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (rlang::is_installed("connectapi") && identical(Sys.getenv("NOT_CRAN"), "true")) withAutoprint(\{ # examplesIf}
 library(pins)
 b <- board_temp(versioned = TRUE)
 cars_lm <- lm(mpg ~ ., data = mtcars)
